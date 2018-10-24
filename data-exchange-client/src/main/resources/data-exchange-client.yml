@@ -1,0 +1,7 @@
+server:
+  host: http://localhost:8585
+  prefix: /scc/exchange/httpApi
+thread:
+  maxCount: 10
+  aliveCount: 5
+  aliveTime: 60  #second
