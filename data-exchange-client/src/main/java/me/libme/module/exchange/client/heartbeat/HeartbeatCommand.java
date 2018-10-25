@@ -32,7 +32,7 @@ public class HeartbeatCommand implements Command<HeartbeatRequest> {
                     .putHead(Cons.HeadNames.ACCESS_KEY,request.getAk())
 //                    .putHead(Cons.DATASOURCE_CODE,request.getDataSourceCode())
                     .putHead(Cons.HeadNames.DATASOURCE_NAME,request.getDataSourceName())
-                    .putHead(Cons.HeadNames.REQUEST_TYPE, Cons.HeadValues.HEARTBEAT+"|"+ Cons.HeadValues.DATA)
+                    .putHead(Cons.HeadNames.REQUEST_TYPE, Cons.HeadValues.HEARTBEAT)
                     .execute(Config.server().getHost()+Config.server().getPrefix()+"/heartBeat");
         } catch (IOException e) {
             LOGGER.error(e.getMessage(),e);

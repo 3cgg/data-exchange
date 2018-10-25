@@ -32,7 +32,7 @@ public class DataCommand implements Command<DataRequest> {
 //                    .putHead(Cons.DATASOURCE_CODE,request.getDataSourceCode())
                     .putHead(Cons.HeadNames.DATASOURCE_NAME,request.getDataSourceName())
                     .putHead(Cons.HeadNames.QUEUE,request.getQueue())
-                    .putHead(Cons.HeadNames.REQUEST_TYPE, Cons.HeadValues.HEARTBEAT)
+                    .putHead(Cons.HeadNames.REQUEST_TYPE, Cons.HeadValues.HEARTBEAT+"|"+ Cons.HeadValues.DATA)
                     .putHead("data","http-stream")
                     .setEntity(stringEntity)
                     .execute(Config.server().getHost()+Config.server().getPrefix()+"/collect");
