@@ -9,6 +9,11 @@ import me.libme.module.exchange.client.data.DataRequest;
 import me.libme.module.exchange.client.heartbeat.HeartbeatCommand;
 import me.libme.module.exchange.client.heartbeat.HeartbeatRequest;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * Created by J on 2018/10/24.
  */
@@ -27,6 +32,18 @@ public abstract class Sender {
         executor=new TaskExecutor(simpleThreadPoolExecutorFactory);
     }
 
+    private static ScheduledExecutorService executorService= Executors.newScheduledThreadPool(1);
+
+    private static AtomicBoolean heartbeat=new AtomicBoolean(false);
+
+    public static void heartbeat(){
+        if(heartbeat.compareAndSet(false,true)){
+            HeartbeatRequest heartbeatRequest=new HeartbeatRequest();
+            executorService.scheduleAtFixedRate(()->Sender.send(heartbeatRequest),10,30, TimeUnit.SECONDS);
+        }
+    }
+
+
     public static void send(HeartbeatRequest request){
 
         executor.promise(new Task() {
@@ -38,7 +55,6 @@ public abstract class Sender {
 
 
     }
-
 
     public static void send(DataRequest request) {
         executor.promise(new Task() {

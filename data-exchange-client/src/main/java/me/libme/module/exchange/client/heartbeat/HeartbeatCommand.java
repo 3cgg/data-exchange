@@ -22,6 +22,8 @@ public class HeartbeatCommand implements Command<HeartbeatRequest> {
     @Override
     public void execute(HeartbeatRequest request, Handler handler) {
 
+        request.initClient(Config.client());
+
         heartbeatValidator.validate(request);
 
         try {

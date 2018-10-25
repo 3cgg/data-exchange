@@ -5,3 +5,7 @@ thread:
   maxCount: 10
   aliveCount: 5
   aliveTime: 60  #second
+client:
+  ak: AK
+  name: DATA SOURCE NAME
+  node: 0   # 没有集群的情况下，不需要管这个配置

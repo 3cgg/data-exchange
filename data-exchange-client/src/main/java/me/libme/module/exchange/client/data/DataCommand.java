@@ -19,6 +19,9 @@ public class DataCommand implements Command<DataRequest> {
 
     @Override
     public void execute(DataRequest request, Handler handler) {
+
+        request.initClient(Config.client());
+
         dataValidator.validate(request);
 
         try {

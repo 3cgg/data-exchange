@@ -15,6 +15,8 @@ public abstract class Config {
 
     private static Server server=new Server();
 
+    private static Client client=new Client();
+
     static {
 
         try(InputStream inputStream=Thread.currentThread().getContextClassLoader().getResourceAsStream("data-exchange-client.yml")){
@@ -25,6 +27,9 @@ public abstract class Config {
 
             server.setHost(yamlMapConfig.getString("server.host","http://localhost:8585"));
             server.setPrefix(yamlMapConfig.getString("server.prefix","/scc/exchange/httpApi"));
+
+            client.setAk(yamlMapConfig.getString("client.ak","AK"));
+            client.setSourceName(yamlMapConfig.getString("client.name","Source Name"));
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -41,6 +46,42 @@ public abstract class Config {
         return threadConfig;
     }
 
+    public static Client client(){return client;}
+
+
+    public static class Client {
+
+        private String ak;
+
+        private String sourceName;
+
+        private String node;
+
+
+        public String getAk() {
+            return ak;
+        }
+
+        public void setAk(String ak) {
+            this.ak = ak;
+        }
+
+        public String getSourceName() {
+            return sourceName;
+        }
+
+        public void setSourceName(String sourceName) {
+            this.sourceName = sourceName;
+        }
+
+        public String getNode() {
+            return node;
+        }
+
+        public void setNode(String node) {
+            this.node = node;
+        }
+    }
 
 
 

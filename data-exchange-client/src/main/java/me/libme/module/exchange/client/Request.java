@@ -1,5 +1,7 @@
 package me.libme.module.exchange.client;
 
+import me.libme.kernel._c.util.JStringUtils;
+
 /**
  * Created by J on 2018/10/24.
  */
@@ -35,5 +37,17 @@ public class Request {
 //    public void setDataSourceCode(String dataSourceCode) {
 //        this.dataSourceCode = dataSourceCode;
 //    }
+
+
+    public void initClient(Config.Client client){
+        if(JStringUtils.isNullOrEmpty(ak)){
+            this.ak=client.getAk();
+        }
+        if(JStringUtils.isNullOrEmpty(dataSourceName)){
+            this.dataSourceName=client.getSourceName();
+        }
+
+    }
+
 
 }
