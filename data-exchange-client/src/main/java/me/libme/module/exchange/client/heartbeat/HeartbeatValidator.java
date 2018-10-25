@@ -12,6 +12,7 @@ public class HeartbeatValidator extends RequestValidator<HeartbeatRequest> {
         super.validate(target);
 
 
+
         return  true;
     }
 }

@@ -13,9 +13,9 @@ public class RequestValidator<T extends Request> implements SimpleValiator<T>{
     @Override
     public boolean validate(T target) {
 
-        Assert.state(JStringUtils.isNotNullOrEmpty(target.getAk()),"ak is missing.");
-//        Assert.state(JStringUtils.isNotNullOrEmpty(target.getDataSourceCode()),"data source code is missing.");
-        Assert.state(JStringUtils.isNotNullOrEmpty(target.getDataSourceName()),"data source name is missing.");
+        Assert.isTrue(JStringUtils.isNotNullOrEmpty(target.getAk()),"ak is missing.");
+//        Assert.isTrue(JStringUtils.isNotNullOrEmpty(target.getDataSourceCode()),"data source code is missing.");
+        Assert.isTrue(JStringUtils.isNotNullOrEmpty(target.getDataSourceName()),"data source name is missing.");
 
         return true;
     }
