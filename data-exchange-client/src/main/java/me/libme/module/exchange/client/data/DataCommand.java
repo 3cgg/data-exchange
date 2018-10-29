@@ -6,14 +6,17 @@ import me.libme.module.exchange.client.Config;
 import me.libme.module.exchange.client.Cons;
 import me.libme.module.exchange.client.Handler;
 import org.apache.http.entity.StringEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
  * Created by J on 2018/10/24.
  */
 public class DataCommand implements Command<DataRequest> {
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(DataCommand.class);
 
     private DataValidator dataValidator=new DataValidator();
 
@@ -35,8 +38,8 @@ public class DataCommand implements Command<DataRequest> {
                     .putHead(Cons.HeadNames.REQUEST_TYPE, Cons.HeadValues.HEARTBEAT+"|"+ Cons.HeadValues.DATA)
                     .setEntity(stringEntity)
                     .execute(Config.server().getHost()+Config.server().getPrefix()+"/collect");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(),e);
         }
 
 

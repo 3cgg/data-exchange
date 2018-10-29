@@ -8,16 +8,14 @@ import me.libme.module.exchange.client.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 /**
  * Created by J on 2018/10/24.
  */
 public class HeartbeatCommand implements Command<HeartbeatRequest> {
 
-    private HeartbeatValidator heartbeatValidator=new HeartbeatValidator();
-
     private static final Logger LOGGER= LoggerFactory.getLogger(HeartbeatCommand.class);
+
+    private HeartbeatValidator heartbeatValidator=new HeartbeatValidator();
 
     @Override
     public void execute(HeartbeatRequest request, Handler handler) {
@@ -34,7 +32,7 @@ public class HeartbeatCommand implements Command<HeartbeatRequest> {
                     .putHead(Cons.HeadNames.DATASOURCE_NAME,request.getDataSourceName())
                     .putHead(Cons.HeadNames.REQUEST_TYPE, Cons.HeadValues.HEARTBEAT)
                     .execute(Config.server().getHost()+Config.server().getPrefix()+"/heartBeat");
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.error(e.getMessage(),e);
         }
 
